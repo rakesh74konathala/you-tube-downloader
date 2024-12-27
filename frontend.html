@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Downloader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 70%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .video-options {
+            margin-top: 20px;
+            display: none;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .status-message {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #d9534f;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>YouTube Video Downloader</h1>
+        <p>Enter the YouTube video URL below to download the video.</p>
+
+        <div class="form-container">
+            <input type="text" id="url" placeholder="Paste YouTube URL here" />
+            <button onclick="processVideo()">Download Video</button>
+        </div>
+
+        <div class="video-options" id="video-options">
+            <p>Select video format:</p>
+            <select id="video-format">
+                <option value="mp4">MP4</option>
+                <option value="webm">WEBM</option>
+                <option value="3gp">3GP</option>
+            </select>
+        </div>
+
+        <div id="status-message" class="status-message"></div>
+    </div>
+
+    <script>
+        // Function to simulate the video processing and show the format selection options
+        function processVideo() {
+            const url = document.getElementById('url').value;
+            const statusMessage = document.getElementById('status-message');
+            const videoOptions = document.getElementById('video-options');
+
+            // Validate the URL input
+            if (!url) {
+                statusMessage.textContent = 'Please enter a YouTube URL.';
+                statusMessage.style.color = 'red';
+                return;
+            }
+
+            // Validate if the URL is a valid YouTube URL (basic check)
+            const youtubeUrlRegex = /^(https:\/\/www\.youtube\.com\/watch\?v=|https:\/\/youtu\.be\/)[a-zA-Z0-9_-]{11}$/;
+            if (!youtubeUrlRegex.test(url)) {
+                statusMessage.textContent = 'Please enter a valid YouTube URL.';
+                statusMessage.style.color = 'red';
+                return;
+            }
+
+            // Simulate processing the URL
+            statusMessage.textContent = 'Processing your video URL...';
+            statusMessage.style.color = 'blue';
+
+            // Show the format selection options
+            videoOptions.style.display = 'block';
+
+            // Simulate a successful response after 2 seconds (mimicking server processing)
+            setTimeout(function () {
+                statusMessage.textContent = 'Video is ready to download!';
+                statusMessage.style.color = 'green';
+            }, 2000);
+        }
+    </script>
+
+</body>
+
+</html>
